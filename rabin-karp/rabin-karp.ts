@@ -139,23 +139,21 @@ function rabinKarp(inputString: string, pattern: string) {
   let substring = inputString.slice(0, currentIdx);
   let currentHash = calculateHash(substring, base);
 
-  while (currentIdx < inputStringLength) {
+  while (currentIdx <= inputStringLength) {
     if (patternHash === currentHash) {
       const stringsMatched = matchStrings(pattern, substring)
       if (stringsMatched) {
         return true
       }
     }
+
+    if (currentIdx === inputStringLength) {
+      return false;
+    }
+
     const oldSubstring = substring;
     substring = inputString.slice((currentIdx + 1) - patternLength, currentIdx += 1);
     currentHash = calculateRollingHash(currentHash, oldSubstring[0], substring[substring.length - 1], patternLength, base)
-  }
-
-  if (patternHash === currentHash) {
-    const stringsMatched = matchStrings(pattern, substring)
-    if (stringsMatched) {
-      return true
-    }
   }
 
   return false;

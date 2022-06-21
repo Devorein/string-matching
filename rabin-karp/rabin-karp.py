@@ -1,4 +1,5 @@
 import math
+from cmath import log
 
 char_ascii_dict: dict[str, int] = {
     "0": 48,
@@ -137,11 +138,15 @@ def rabin_karp(input_string: str, pattern: str) -> bool:
     substring = input_string[0:current_idx]
     current_hash = calculate_hash(substring, base)
 
-    while (current_idx < input_string_length):
+    while (current_idx <= input_string_length):
         if (pattern_hash == current_hash):
             strings_matches = match_strings(pattern, substring)
             if (strings_matches):
                 return True
+
+        if (current_idx == input_string_length):
+            return False
+
         old_substring = substring
         substring = input_string[(current_idx + 1) -
                                  pattern_length: current_idx + 1]
@@ -149,15 +154,11 @@ def rabin_karp(input_string: str, pattern: str) -> bool:
         current_hash = calculate_rolling_hash(
             current_hash, old_substring[0], substring[-1], pattern_length, base)
 
-    if (pattern_hash == current_hash):
-        strings_matches = match_strings(pattern, substring)
-        if (strings_matches):
-            return True
-
     return False
 
 
 pattern = "abc"
-input_string = "defghiabacaba"
+input_string = "acabc"
 
+print(calculate_rolling_hash(calculate_hash("cab", 3), "c", "c", 3, 3))
 print(rabin_karp(input_string, pattern))
