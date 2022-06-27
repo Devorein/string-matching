@@ -1,5 +1,4 @@
 import math
-from cmath import log
 
 char_ascii_dict: dict[str, int] = {
     "0": 48,

@@ -1,4 +1,4 @@
-function createPrefixSuffixTable(pattern: string) {
+function generatePiTable(pattern: string) {
   const piTable: number[] = [0]
 
   if (pattern.length === 1) {
@@ -11,7 +11,7 @@ function createPrefixSuffixTable(pattern: string) {
   const stringLength = pattern.length;
 
   while (j < stringLength) {
-    if (pattern[i] == pattern[j]) {
+    if (pattern[i] === pattern[j]) {
       piTable.push(i + 1)
       i += 1;
     } else {
@@ -34,7 +34,7 @@ function kmp(inputString: string, pattern: string) {
   let inputStringPointer = 0;
   let patternPointer = -1;
 
-  const piTable = createPrefixSuffixTable(pattern);
+  const piTable = generatePiTable(pattern);
   while (inputStringPointer < inputStringLength) {
     const patternChar = pattern[patternPointer + 1];
     const inputStringChar = inputString[inputStringPointer]
