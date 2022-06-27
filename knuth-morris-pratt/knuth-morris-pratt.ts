@@ -1,16 +1,15 @@
 function generatePiTable(pattern: string) {
   const piTable: number[] = [0]
+  const patternLength = pattern.length;
 
-  if (pattern.length === 1) {
+  if (patternLength === 1) {
     return piTable
   }
 
   let i = 0;
   let j = 1;
 
-  const stringLength = pattern.length;
-
-  while (j < stringLength) {
+  while (j < patternLength) {
     if (pattern[i] === pattern[j]) {
       piTable.push(i + 1)
       i += 1;

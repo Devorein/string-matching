@@ -1,15 +1,14 @@
 def generate_pi_table(pattern: str):
     pi_table: list[int] = [0]
+    pattern_length = len(pattern)
 
-    if len(pattern) == 1:
+    if pattern_length == 1:
         return pi_table
 
     i = 0
     j = 1
 
-    string_length = len(pattern)
-
-    while j < string_length:
+    while j < pattern_length:
         if pattern[i] == pattern[j]:
             pi_table.append(i + 1)
             i += 1
